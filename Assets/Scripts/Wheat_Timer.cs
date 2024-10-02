@@ -9,7 +9,7 @@ public class Wheat_Timer : MonoBehaviour
 {
     public int _civilians = 0;
     public int _warriors = 0;
-    [SerializeField] private int _time = 10;
+    //[SerializeField] private int _time = 10;
     [SerializeField] private Image _image;
     [SerializeField] private float _imageFillSpeed = 0.1f;
     [SerializeField] public int _wheat = 0;
