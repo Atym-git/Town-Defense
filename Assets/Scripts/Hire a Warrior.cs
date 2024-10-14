@@ -6,40 +6,45 @@ using UnityEngine.UI;
 
 public class HireaWarrior : MonoBehaviour
 {
-    [SerializeField] Button _button;
-    [SerializeField] TextMeshProUGUI _textMeshPro;
-    Wheat_Timer _wheatScript;
+    [SerializeField] public Image imageWarriorTimer;
+    [SerializeField] float _timerFillSpeed;
+    [SerializeField] Button hireWarriorButton;
+    Wheat_Timer wheatScript;
 
     void Start()
     {
-        _wheatScript = FindObjectOfType<Wheat_Timer>();
-        _button.onClick.AddListener(HireWarrior);
-    }
-
-
-    void Update()
-    {
-
+        wheatScript = FindObjectOfType<Wheat_Timer>();
+        hireWarriorButton.onClick.AddListener(HireWarrior);
     }
 
     private void HireWarrior()
     {
-        if (_wheatScript._wheat != 0)
+            wheatScript._wheat--;
+        StartCoroutine(FarmerTimer());
+    }
+    IEnumerator FarmerTimer()
+    {
+        while (imageWarriorTimer.fillAmount < 1)
         {
-            _wheatScript._wheat--;
-            _wheatScript._warriors++;
-
+            imageWarriorTimer.fillAmount += _timerFillSpeed;
+            yield return new WaitForSeconds(0.25f);
+            if (imageWarriorTimer.fillAmount == 1)
+            {
+                imageWarriorTimer.fillAmount = 0;
+                wheatScript._warriors++;
+                yield break;
+            }
+        }
+    }
+    private void Update()
+    {
+        if (wheatScript._wheat != 0 & imageWarriorTimer.fillAmount == 0)
+        {
+            hireWarriorButton.interactable = true;
         }
         else
         {
-            _textMeshPro.enabled = true;
-            StartCoroutine(Delay());
-            _textMeshPro.enabled = false;
+            hireWarriorButton.interactable = false;
         }
-    }
-
-    IEnumerator Delay()
-    {
-        yield return new WaitForSeconds(1f);
     }
 }

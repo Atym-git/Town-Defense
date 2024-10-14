@@ -21,11 +21,9 @@ public class Wheat_Timer : MonoBehaviour
 
 
     
-    private void Awake()
+    private void Start()
     {
-        
         StartCoroutine(Delay());
-        //StartTimer();
     }
 
     private void WheatTimer()
@@ -34,14 +32,12 @@ public class Wheat_Timer : MonoBehaviour
         {
             _image.fillAmount = 0;
             _wheat = _wheat + _civilians;
-
         }
         else
         {
             _image.fillAmount = _image.fillAmount + _imageFillSpeed;
         }
     }
-
 
 
     IEnumerator Delay()
@@ -56,6 +52,17 @@ public class Wheat_Timer : MonoBehaviour
 
     void Update()
     {
+        if (_warriors < 0 || _civilians < 0)
+        {
+            _warriors = 0;
+            _civilians = 0;
+        }
+        if (_wheat <= 0 & _civilians <= 0)
+        {
+            // Game Over
+            _wheat = 0;
+            _civilians = 1;
+        }
         //    if (_currTime >= 0)
         //    {
         //        _currTime -= Time.deltaTime;

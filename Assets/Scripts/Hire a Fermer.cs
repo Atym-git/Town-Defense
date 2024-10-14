@@ -6,41 +6,47 @@ using UnityEngine.UI;
 
 public class HireaFermer : MonoBehaviour
 {
-    [SerializeField] private Button _button;
-    [SerializeField] private TextMeshProUGUI _textmeshpro;
-    Wheat_Timer _wheatScript;
-    //[SerializeField] public int _civilians;
+    [SerializeField] public Image imageFarmerTimer;
+    [SerializeField] float _timerFillSpeed;
+    [SerializeField] private Button hireFarmerButton;
+    Wheat_Timer wheatScript;
 
 
     void Start()
     {
-        _button.onClick.AddListener(Hire_Farmer);
-        _wheatScript = FindFirstObjectByType<Wheat_Timer>();
-
+        hireFarmerButton.onClick.AddListener(Hire_Farmer);
+        wheatScript = FindFirstObjectByType<Wheat_Timer>();
     }
 
     private void Hire_Farmer()
     {
-        if (_wheatScript._wheat != 0)
+            wheatScript._wheat--;
+            StartCoroutine(FarmerTimer());
+    }
+
+    IEnumerator FarmerTimer()
+    {
+        while (imageFarmerTimer.fillAmount < 1)
         {
-            _wheatScript._wheat--;
-            _wheatScript._civilians++;
+            imageFarmerTimer.fillAmount += _timerFillSpeed;
+            yield return new WaitForSeconds(0.25f);
+            if (imageFarmerTimer.fillAmount == 1)
+            {
+                imageFarmerTimer.fillAmount = 0;
+                wheatScript._civilians++;
+                yield break;
+            }
+        }
+    }
+    private void Update()
+    {
+        if (wheatScript._wheat != 0 & imageFarmerTimer.fillAmount == 0)
+        {
+            hireFarmerButton.interactable = true;
         }
         else
         {
-            _textmeshpro.enabled = true;
-            StartCoroutine(Delay());
-            _textmeshpro.enabled = false;
+            hireFarmerButton.interactable = false;
         }
-    }
-
-    IEnumerator Delay()
-    {
-        yield return new WaitForSeconds(0.75f);
-    }
-
-    void Update()
-    {
-        
     }
 }
