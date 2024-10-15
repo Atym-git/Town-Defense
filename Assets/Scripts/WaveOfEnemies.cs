@@ -42,8 +42,9 @@ public class WaveOfEnemies : MonoBehaviour
         }
         else /*(enemiesCurrAmount <= wheatScript._warriors + wheatScript._civilians / 3)*/
         {   
-            wheatScript._civilians -= enemiesCurrAmount + wheatScript._warriors;
+            wheatScript._civilians -= enemiesCurrAmount * 3 - wheatScript._warriors * 3;
             wheatScript._warriors -= enemiesCurrAmount;
+            Debug.Log("Test");
         }
 
 

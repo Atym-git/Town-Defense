@@ -45,7 +45,7 @@ public class Wheat_Timer : MonoBehaviour
         while (true)
         {
             WheatTimer();
-            yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(0.5f);
         }   
     }
 

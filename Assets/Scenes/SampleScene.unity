@@ -441,7 +441,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 345}
+  m_AnchoredPosition: {x: 0, y: 422}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &225225573
@@ -500,8 +500,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -1806,7 +1806,7 @@ MonoBehaviour:
   _civilians: 1
   _warriors: 0
   _image: {fileID: 968341290}
-  _imageFillSpeed: 0.07
+  _imageFillSpeed: 0.15
   _wheat: 0
   _textMeshPro: {fileID: 1634660400}
   _textMeshPro2: {fileID: 1083840276}
@@ -1826,7 +1826,7 @@ MonoBehaviour:
   wheatScript: {fileID: 1299103850}
   _textMeshPro: {fileID: 728903704}
   _image: {fileID: 211757395}
-  _imageFillSpeed: 0
+  _imageFillSpeed: 0.05
 --- !u!114 &1299103852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1842,7 +1842,7 @@ MonoBehaviour:
   enemiesStartAmount: 2
   showingAmountOfTime: {fileID: 2097522998}
   showingAmountOfEnemies: {fileID: 225225573}
-  currentAmountOfTimeToWave: 50
+  currentAmountOfTimeToWave: 30
   wheatScript: {fileID: 1299103850}
 --- !u!1 &1305297789
 GameObject:

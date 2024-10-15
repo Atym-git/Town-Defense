@@ -19,7 +19,7 @@ public class WheatContibution : MonoBehaviour
     {
         while (true)
         {
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(0.5f);
         WheatContrib();
         }
     }
