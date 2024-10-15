@@ -9,6 +9,7 @@ public class WheatContibution : MonoBehaviour
     [SerializeField] private Wheat_Timer wheatScript;
     [SerializeField] private TextMeshProUGUI _textMeshPro;
     [SerializeField] private Image _image;
+    [SerializeField] private float _imageFillSpeed;
     private int _difference;
     void Start()
     {
@@ -18,7 +19,7 @@ public class WheatContibution : MonoBehaviour
     {
         while (true)
         {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.75f);
         WheatContrib();
         }
     }
@@ -45,7 +46,7 @@ public class WheatContibution : MonoBehaviour
         }
         else
         {
-            _image.fillAmount += 0.1f;
+            _image.fillAmount += _imageFillSpeed;
         }
     }
 }

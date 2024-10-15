@@ -8,17 +8,20 @@ public class WaveOfEnemies : MonoBehaviour
 {
     [SerializeField] int enemiesStartAmount;
     [SerializeField] TextMeshProUGUI showingAmountOfTime;
+    [SerializeField] TextMeshProUGUI showingAmountOfEnemies;
     [SerializeField] int currentAmountOfTimeToWave;
     private int amountOfTimeToWave;
-
+    private int enemiesCurrAmount = 0;
+    [SerializeField] Wheat_Timer wheatScript;
 
     void Start()
     {
+        enemiesCurrAmount = enemiesStartAmount;
         amountOfTimeToWave = currentAmountOfTimeToWave;
         StartCoroutine(TimeUntilNextWave());
     }
 
-    IEnumerator TimeUntilNextWave()
+    private IEnumerator TimeUntilNextWave()
     {
         while (true)
         {
@@ -31,13 +34,25 @@ public class WaveOfEnemies : MonoBehaviour
             }
         }
     }
-static void WaveStart()
+    void WaveStart()
     {
+        if (enemiesCurrAmount <= wheatScript._warriors)
+        {
+            wheatScript._warriors -= enemiesCurrAmount;
+        }
+        else /*(enemiesCurrAmount <= wheatScript._warriors + wheatScript._civilians / 3)*/
+        {   
+            wheatScript._civilians -= enemiesCurrAmount + wheatScript._warriors;
+            wheatScript._warriors -= enemiesCurrAmount;
+        }
 
+
+        enemiesCurrAmount++;
     }
 
     void Update()
     {
-        showingAmountOfTime.text = currentAmountOfTimeToWave.ToString();
+        showingAmountOfTime.text = currentAmountOfTimeToWave.ToString() + " seconds";
+        showingAmountOfEnemies.text = enemiesCurrAmount.ToString() + " Enemies will appear in";
     }
 }

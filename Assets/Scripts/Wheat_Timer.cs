@@ -23,7 +23,7 @@ public class Wheat_Timer : MonoBehaviour
     
     private void Start()
     {
-        StartCoroutine(Delay());
+        StartCoroutine(WheatGive());
     }
 
     private void WheatTimer()
@@ -40,7 +40,7 @@ public class Wheat_Timer : MonoBehaviour
     }
 
 
-    IEnumerator Delay()
+    IEnumerator WheatGive()
     {
         while (true)
         {
@@ -49,17 +49,25 @@ public class Wheat_Timer : MonoBehaviour
         }   
     }
 
+    IEnumerator GameOverDelay()
+    {
+        yield return new WaitForSeconds(3);
+    }
 
     void Update()
     {
-        if (_warriors < 0 || _civilians < 0)
+        if (_warriors < 0)
         {
             _warriors = 0;
+        }
+        if (_civilians < 0)
+        {
             _civilians = 0;
         }
         if (_wheat <= 0 & _civilians <= 0)
         {
             // Game Over
+            StartCoroutine(GameOverDelay());
             _wheat = 0;
             _civilians = 1;
         }
