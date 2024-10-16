@@ -11,6 +11,8 @@ public class WheatContibution : MonoBehaviour
     [SerializeField] private Image _image;
     [SerializeField] private float _imageFillSpeed;
     private int _difference;
+    private int amountOfPeople;
+
     void Start()
     {
         StartCoroutine(TimerWorking());

@@ -16,6 +16,12 @@ public class Wheat_Timer : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _textMeshPro;
     [SerializeField] private TextMeshProUGUI _textMeshPro2;
     [SerializeField] private TextMeshProUGUI _textMeshPro3;
+    [SerializeField] private Canvas gameOverCanvas;
+    [SerializeField] private Canvas gameCanvas;
+    [SerializeField] private Canvas victoryCanvas;
+    [SerializeField] private TextMeshProUGUI showingContributionOfWheat;
+    private int amountOfPeopleTotal = 0;
+
     private float _currTime;
 
 
@@ -49,11 +55,6 @@ public class Wheat_Timer : MonoBehaviour
         }   
     }
 
-    IEnumerator GameOverDelay()
-    {
-        yield return new WaitForSeconds(3);
-    }
-
     void Update()
     {
         if (_warriors < 0)
@@ -66,28 +67,19 @@ public class Wheat_Timer : MonoBehaviour
         }
         if (_wheat <= 0 & _civilians <= 0)
         {
-            // Game Over
-            StartCoroutine(GameOverDelay());
-            _wheat = 0;
-            _civilians = 1;
-        }
-        //    if (_currTime >= 0)
-        //    {
-        //        _currTime -= Time.deltaTime;
-        //        _image.fillAmount = _currTime / _time;
-        //    }
+            gameCanvas.gameObject.SetActive(false);
+            gameOverCanvas.gameObject.SetActive(true);
 
-        //    if (_image.fillAmount == 1)
-        //    {
-        //        _wheat = _wheat + _civilians;
-        //        _image.fillAmount = 0;
-        //    }
+        }
+        if (_civilians >= 50 & _wheat >= 100)
+        {
+            victoryCanvas.gameObject.SetActive(true);
+            gameCanvas.gameObject.SetActive(false);
+        }
+        amountOfPeopleTotal = _civilians + _warriors;
+        showingContributionOfWheat.text = amountOfPeopleTotal.ToString() + " " + "wheat will contribute in";
         _textMeshPro.text = _wheat.ToString();
         _textMeshPro2.text = _civilians.ToString();
         _textMeshPro3.text = _warriors.ToString();
     }
-    //private void StartTimer()
-    //{
-    //    _currTime = _time;
-    //}
 }
