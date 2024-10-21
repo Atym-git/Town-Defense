@@ -19,7 +19,7 @@ public class HireaWarrior : MonoBehaviour
 
     public void HireWarrior()
     {
-            wheatScript._wheat--;
+            wheatScript.wheat--;
         StartCoroutine(FarmerTimer());
     }
     IEnumerator FarmerTimer()
@@ -31,14 +31,18 @@ public class HireaWarrior : MonoBehaviour
             if (imageWarriorTimer.fillAmount == 1)
             {
                 imageWarriorTimer.fillAmount = 0;
-                wheatScript._warriors++;
+                wheatScript.warriors++;
                 yield break;
             }
         }
     }
     private void Update()
     {
-        if (wheatScript._wheat != 0 & imageWarriorTimer.fillAmount == 0)
+        InteractableButton();
+    }
+    private void InteractableButton()
+    {
+        if (wheatScript.wheat != 0 & imageWarriorTimer.fillAmount == 0)
         {
             hireWarriorButton.interactable = true;
         }

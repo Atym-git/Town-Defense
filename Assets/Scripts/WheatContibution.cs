@@ -33,19 +33,19 @@ public class WheatContibution : MonoBehaviour
         if (_image.fillAmount == 1)
         {
             _image.fillAmount = 0;
-            _difference = (wheatScript._civilians + wheatScript._warriors) - wheatScript._wheat;
-            if (wheatScript._wheat < (wheatScript._civilians + wheatScript._warriors) & wheatScript._warriors >= _difference)
+            _difference = (wheatScript.civilians + wheatScript.warriors) - wheatScript.wheat;
+            if (wheatScript.wheat < (wheatScript.civilians + wheatScript.warriors) & wheatScript.warriors >= _difference)
             {
-                wheatScript._warriors -= _difference;
+                wheatScript.warriors -= _difference;
             }
-            else if (wheatScript._wheat < (wheatScript._civilians + wheatScript._warriors) & (wheatScript._warriors + wheatScript._civilians) >= _difference)
+            else if (wheatScript.wheat < (wheatScript.civilians + wheatScript.warriors) & (wheatScript.warriors + wheatScript.civilians) >= _difference)
             {
-                wheatScript._civilians -= _difference + wheatScript._warriors;
-                wheatScript._warriors -= _difference;
+                wheatScript.civilians -= _difference + wheatScript.warriors;
+                wheatScript.warriors -= _difference;
             }
             else
             { 
-            wheatScript._wheat -= wheatScript._civilians + wheatScript._warriors;
+            wheatScript.wheat -= wheatScript.civilians + wheatScript.warriors;
             }
         }
         else

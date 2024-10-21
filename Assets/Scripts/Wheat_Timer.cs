@@ -7,12 +7,12 @@ using UnityEngine.UI;
 
 public class Wheat_Timer : MonoBehaviour
 {
-    public int _civilians = 0;
-    public int _warriors = 0;
+    public int civilians;
+    public int warriors;
     //[SerializeField] private int _time = 10;
-    [SerializeField] public Image _image; // image that's used as a timer
+    [SerializeField] public Image image; // image that's used as a timer
     [SerializeField] private float _imageFillSpeed = 0.1f;
-    [SerializeField] public int _wheat = 0;
+    [SerializeField] public int wheat;
     [SerializeField] private TextMeshProUGUI _textMeshPro;
     [SerializeField] private TextMeshProUGUI _textMeshPro2;
     [SerializeField] private TextMeshProUGUI _textMeshPro3;
@@ -24,21 +24,21 @@ public class Wheat_Timer : MonoBehaviour
 
     private float _currTime;
 
-    private void Start()
-    {
-        StartCoroutine(WheatGive());
-    }
+    //public void StartAScript()
+    //{
+    //    StartCoroutine(WheatGive());
+    //}
 
     private void WheatTimer()
     {
-        if (_image.fillAmount == 1)
+        if (image.fillAmount == 1)
         {
-            _image.fillAmount = 0;
-            _wheat = _wheat + _civilians;
+            image.fillAmount = 0;
+            wheat = wheat + civilians;
         }
         else
         {
-            _image.fillAmount = _image.fillAmount + _imageFillSpeed;
+            image.fillAmount = image.fillAmount + _imageFillSpeed;
         }
     }
 
@@ -52,31 +52,43 @@ public class Wheat_Timer : MonoBehaviour
         }   
     }
 
-    void Update()
+    private void Update()
     {
-        if (_warriors < 0)
+        CheckNegative();
+        Victory();
+        ShowingNumbers();
+
+        amountOfPeopleTotal = civilians + warriors;
+    }
+    private void CheckNegative()
+    {
+        if (warriors < 0)
         {
-            _warriors = 0;
+            warriors = 0;
         }
-        if (_civilians < 0)
+        if (civilians < 0)
         {
-            _civilians = 0;
+            civilians = 0;
         }
-        if (_civilians <= 0)
+        if (civilians <= 0)
         {
             gameCanvas.gameObject.SetActive(false);
             gameOverCanvas.gameObject.SetActive(true);
-
         }
-        if (_civilians >= 50 & _wheat >= 100)
+    }
+    private void Victory()
+    {
+        if (civilians >= 50 & wheat >= 100)
         {
             gameCanvas.gameObject.SetActive(false);
             victoryCanvas.gameObject.SetActive(true);
         }
-        amountOfPeopleTotal = _civilians + _warriors;
+    }
+    private void ShowingNumbers()
+    {
         showingContributionOfWheat.text = amountOfPeopleTotal.ToString() + " " + "wheat will contribute in";
-        _textMeshPro.text = _wheat.ToString();
-        _textMeshPro2.text = _civilians.ToString();
-        _textMeshPro3.text = _warriors.ToString();
+        _textMeshPro.text = wheat.ToString();
+        _textMeshPro2.text = civilians.ToString();
+        _textMeshPro3.text = warriors.ToString();
     }
 }

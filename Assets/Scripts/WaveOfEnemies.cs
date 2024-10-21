@@ -36,14 +36,14 @@ public class WaveOfEnemies : MonoBehaviour
     }
     void WaveStart()
     {
-        if (enemiesCurrAmount <= wheatScript._warriors)
+        if (enemiesCurrAmount <= wheatScript.warriors)
         {
-            wheatScript._warriors -= enemiesCurrAmount;
+            wheatScript.warriors -= enemiesCurrAmount;
         }
         else
         {   
-            wheatScript._civilians -= enemiesCurrAmount * 3 - wheatScript._warriors * 3;
-            wheatScript._warriors -= enemiesCurrAmount;
+            wheatScript.civilians -= enemiesCurrAmount * 3 - wheatScript.warriors * 3;
+            wheatScript.warriors -= enemiesCurrAmount;
         }
 
         if (startingAmountOfTimeToWave <= 20)

@@ -20,7 +20,7 @@ public class HireaFermer : MonoBehaviour
 
     private void Hire_Farmer()
     {
-            wheatScript._wheat--;
+            wheatScript.wheat--;
             StartCoroutine(FarmerTimer());
     }
 
@@ -33,14 +33,14 @@ public class HireaFermer : MonoBehaviour
             if (imageFarmerTimer.fillAmount == 1)
             {
                 imageFarmerTimer.fillAmount = 0;
-                wheatScript._civilians++;
+                wheatScript.civilians++;
                 yield break;
             }
         }
     }
     private void Update()
     {
-        if (wheatScript._wheat != 0 & imageFarmerTimer.fillAmount == 0)
+        if (wheatScript.wheat != 0 & imageFarmerTimer.fillAmount == 0)
         {
             hireFarmerButton.interactable = true;
         }

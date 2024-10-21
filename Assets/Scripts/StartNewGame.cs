@@ -21,17 +21,17 @@ public class StartNewGame : MonoBehaviour
 
     void StartANewGame()
     {
-        menuCanvas.gameObject.SetActive(false);
-        gameCanvas.gameObject.SetActive(true);
-        wheatScript._warriors = 0;
-        wheatScript._civilians = 1;
-        wheatScript._wheat = 0;
+        wheatScript.warriors = 0;
+        wheatScript.civilians = 1;
+        wheatScript.wheat = 0;
         //waveOfEnemiesScript.currentAmountOfTimeToWave = waveOfEnemiesScript.startingAmountOfTimeToWave;
         //waveOfEnemiesScript.enemiesCurrAmount = waveOfEnemiesScript.enemiesStartAmount;
-        //wheatScript._image.fillAmount = 0;
+        //wheatScript.image.fillAmount = 0;
         //hireaFermerScript.imageFarmerTimer.fillAmount = 0;
         //hireaWarriorScript.imageWarriorTimer.fillAmount = 0;
         StartCoroutine(wheatScript.WheatGive());
-        StartCoroutine(contibutionScript.TimerWorking());
+        //StartCoroutine(contibutionScript.TimerWorking());
+        menuCanvas.gameObject.SetActive(false);
+        gameCanvas.gameObject.SetActive(true);
     }
 }
