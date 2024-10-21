@@ -13,11 +13,13 @@ public class WheatContibution : MonoBehaviour
     private int _difference;
     private int amountOfPeople;
 
-    void Start()
+    private void Start()
     {
         StartCoroutine(TimerWorking());
     }
-    IEnumerator TimerWorking()
+
+
+    public IEnumerator TimerWorking()
     {
         while (true)
         {

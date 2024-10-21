@@ -10,7 +10,7 @@ public class Wheat_Timer : MonoBehaviour
     public int _civilians = 0;
     public int _warriors = 0;
     //[SerializeField] private int _time = 10;
-    [SerializeField] private Image _image;
+    [SerializeField] public Image _image; // image that's used as a timer
     [SerializeField] private float _imageFillSpeed = 0.1f;
     [SerializeField] public int _wheat = 0;
     [SerializeField] private TextMeshProUGUI _textMeshPro;
@@ -24,9 +24,6 @@ public class Wheat_Timer : MonoBehaviour
 
     private float _currTime;
 
-
-
-    
     private void Start()
     {
         StartCoroutine(WheatGive());
@@ -46,7 +43,7 @@ public class Wheat_Timer : MonoBehaviour
     }
 
 
-    IEnumerator WheatGive()
+    public IEnumerator WheatGive()
     {
         while (true)
         {
@@ -65,7 +62,7 @@ public class Wheat_Timer : MonoBehaviour
         {
             _civilians = 0;
         }
-        if (_wheat <= 0 & _civilians <= 0)
+        if (_civilians <= 0)
         {
             gameCanvas.gameObject.SetActive(false);
             gameOverCanvas.gameObject.SetActive(true);
@@ -73,8 +70,8 @@ public class Wheat_Timer : MonoBehaviour
         }
         if (_civilians >= 50 & _wheat >= 100)
         {
-            victoryCanvas.gameObject.SetActive(true);
             gameCanvas.gameObject.SetActive(false);
+            victoryCanvas.gameObject.SetActive(true);
         }
         amountOfPeopleTotal = _civilians + _warriors;
         showingContributionOfWheat.text = amountOfPeopleTotal.ToString() + " " + "wheat will contribute in";

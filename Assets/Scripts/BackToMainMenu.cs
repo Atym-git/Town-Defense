@@ -18,6 +18,4 @@ public class BackToMainMenu : MonoBehaviour
         mainMenuCanvas.gameObject.SetActive(true);
         LoreCanvas.gameObject.SetActive(false);
     }
-
-
 }

@@ -6,18 +6,18 @@ using UnityEngine.UI;
 
 public class WaveOfEnemies : MonoBehaviour
 {
-    [SerializeField] int enemiesStartAmount;
+    [SerializeField] public int enemiesStartAmount;
     [SerializeField] TextMeshProUGUI showingAmountOfTime;
     [SerializeField] TextMeshProUGUI showingAmountOfEnemies;
-    [SerializeField] int currentAmountOfTimeToWave;
-    private int amountOfTimeToWave;
-    private int enemiesCurrAmount = 0;
+    [SerializeField] public int currentAmountOfTimeToWave;
+    public int startingAmountOfTimeToWave;
+    public int enemiesCurrAmount = 0;
     [SerializeField] Wheat_Timer wheatScript;
 
     void Start()
     {
         enemiesCurrAmount = enemiesStartAmount;
-        amountOfTimeToWave = currentAmountOfTimeToWave;
+        startingAmountOfTimeToWave = currentAmountOfTimeToWave;
         StartCoroutine(TimeUntilNextWave());
     }
 
@@ -29,7 +29,7 @@ public class WaveOfEnemies : MonoBehaviour
             currentAmountOfTimeToWave--;
             if (currentAmountOfTimeToWave <= 0)
             {
-                currentAmountOfTimeToWave = amountOfTimeToWave;
+                currentAmountOfTimeToWave = startingAmountOfTimeToWave;
                 WaveStart();
             }
         }
@@ -40,15 +40,22 @@ public class WaveOfEnemies : MonoBehaviour
         {
             wheatScript._warriors -= enemiesCurrAmount;
         }
-        else /*(enemiesCurrAmount <= wheatScript._warriors + wheatScript._civilians / 3)*/
+        else
         {   
             wheatScript._civilians -= enemiesCurrAmount * 3 - wheatScript._warriors * 3;
             wheatScript._warriors -= enemiesCurrAmount;
-            Debug.Log("Test");
         }
 
-
-        enemiesCurrAmount++;
+        if (startingAmountOfTimeToWave <= 20)
+        {
+            startingAmountOfTimeToWave = 20;
+            enemiesCurrAmount += 2;
+        }
+        else
+        {
+            startingAmountOfTimeToWave -= 2;
+            enemiesCurrAmount++;
+        }
     }
 
     void Update()

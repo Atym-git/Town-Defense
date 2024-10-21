@@ -17,7 +17,7 @@ public class HireaWarrior : MonoBehaviour
         hireWarriorButton.onClick.AddListener(HireWarrior);
     }
 
-    private void HireWarrior()
+    public void HireWarrior()
     {
             wheatScript._wheat--;
         StartCoroutine(FarmerTimer());
