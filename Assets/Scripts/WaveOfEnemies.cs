@@ -14,19 +14,19 @@ public class WaveOfEnemies : MonoBehaviour
     public int enemiesCurrAmount = 0;
     [SerializeField] Wheat_Timer wheatScript;
 
-    void Start()
+    void Awake()
     {
         enemiesCurrAmount = enemiesStartAmount;
         startingAmountOfTimeToWave = currentAmountOfTimeToWave;
-        StartCoroutine(TimeUntilNextWave());
     }
 
-    private IEnumerator TimeUntilNextWave()
+    public IEnumerator TimeUntilNextWave()
     {
         while (true)
         {
             yield return new WaitForSeconds(1);
             currentAmountOfTimeToWave--;
+            Debug.Log(currentAmountOfTimeToWave.ToString());
             if (currentAmountOfTimeToWave <= 0)
             {
                 currentAmountOfTimeToWave = startingAmountOfTimeToWave;
@@ -45,17 +45,7 @@ public class WaveOfEnemies : MonoBehaviour
             wheatScript.civilians -= enemiesCurrAmount * 3 - wheatScript.warriors * 3;
             wheatScript.warriors -= enemiesCurrAmount;
         }
-
-        if (startingAmountOfTimeToWave <= 20)
-        {
-            startingAmountOfTimeToWave = 20;
-            enemiesCurrAmount += 2;
-        }
-        else
-        {
-            startingAmountOfTimeToWave -= 2;
-            enemiesCurrAmount++;
-        }
+        enemiesCurrAmount += 2;
     }
 
     void Update()

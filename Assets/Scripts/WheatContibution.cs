@@ -8,18 +8,13 @@ public class WheatContibution : MonoBehaviour
 {
     [SerializeField] private Wheat_Timer wheatScript;
     [SerializeField] private TextMeshProUGUI _textMeshPro;
-    [SerializeField] private Image _image;
-    [SerializeField] private float _imageFillSpeed;
+    [SerializeField] public Image wheatContributionTimer;
+    [SerializeField] private float _timerFillSpeed;
     private int _difference;
     private int amountOfPeople;
 
-    private void Start()
-    {
-        StartCoroutine(TimerWorking());
-    }
 
-
-    public IEnumerator TimerWorking()
+    public IEnumerator WheatContributionTimerWorking()
     {
         while (true)
         {
@@ -30,9 +25,9 @@ public class WheatContibution : MonoBehaviour
     
     private void WheatContrib()
     {
-        if (_image.fillAmount == 1)
+        if (wheatContributionTimer.fillAmount == 1)
         {
-            _image.fillAmount = 0;
+            wheatContributionTimer.fillAmount = 0;
             _difference = (wheatScript.civilians + wheatScript.warriors) - wheatScript.wheat;
             if (wheatScript.wheat < (wheatScript.civilians + wheatScript.warriors) & wheatScript.warriors >= _difference)
             {
@@ -50,7 +45,7 @@ public class WheatContibution : MonoBehaviour
         }
         else
         {
-            _image.fillAmount += _imageFillSpeed;
+            wheatContributionTimer.fillAmount += _timerFillSpeed;
         }
     }
 }

@@ -9,8 +9,7 @@ public class Wheat_Timer : MonoBehaviour
 {
     public int civilians;
     public int warriors;
-    //[SerializeField] private int _time = 10;
-    [SerializeField] public Image image; // image that's used as a timer
+    [SerializeField] public Image image; // image that's used as a WheatProductiontimer
     [SerializeField] private float _imageFillSpeed = 0.1f;
     [SerializeField] public int wheat;
     [SerializeField] private TextMeshProUGUI _textMeshPro;
@@ -20,14 +19,10 @@ public class Wheat_Timer : MonoBehaviour
     [SerializeField] private Canvas gameCanvas;
     [SerializeField] private Canvas victoryCanvas;
     [SerializeField] private TextMeshProUGUI showingContributionOfWheat;
+    [SerializeField] CoroutineRunner CoroutineRunnerScript;
     private int amountOfPeopleTotal = 0;
 
     private float _currTime;
-
-    //public void StartAScript()
-    //{
-    //    StartCoroutine(WheatGive());
-    //}
 
     private void WheatTimer()
     {
@@ -74,6 +69,7 @@ public class Wheat_Timer : MonoBehaviour
         {
             gameCanvas.gameObject.SetActive(false);
             gameOverCanvas.gameObject.SetActive(true);
+            CoroutineRunnerScript.StopCoroutines();
         }
     }
     private void Victory()
@@ -82,6 +78,7 @@ public class Wheat_Timer : MonoBehaviour
         {
             gameCanvas.gameObject.SetActive(false);
             victoryCanvas.gameObject.SetActive(true);
+            CoroutineRunnerScript.StopCoroutines();
         }
     }
     private void ShowingNumbers()

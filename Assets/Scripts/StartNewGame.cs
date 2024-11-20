@@ -13,6 +13,7 @@ public class StartNewGame : MonoBehaviour
     [SerializeField] WheatContibution contibutionScript;
     [SerializeField] HireaFermer hireaFermerScript;
     [SerializeField] HireaWarrior hireaWarriorScript;
+    [SerializeField] CoroutineRunner CoroutineRunnerScript;
 
     void Start()
     {
@@ -24,14 +25,15 @@ public class StartNewGame : MonoBehaviour
         wheatScript.warriors = 0;
         wheatScript.civilians = 1;
         wheatScript.wheat = 0;
-        //waveOfEnemiesScript.currentAmountOfTimeToWave = waveOfEnemiesScript.startingAmountOfTimeToWave;
-        //waveOfEnemiesScript.enemiesCurrAmount = waveOfEnemiesScript.enemiesStartAmount;
-        //wheatScript.image.fillAmount = 0;
-        //hireaFermerScript.imageFarmerTimer.fillAmount = 0;
-        //hireaWarriorScript.imageWarriorTimer.fillAmount = 0;
-        StartCoroutine(wheatScript.WheatGive());
-        //StartCoroutine(contibutionScript.TimerWorking());
+        waveOfEnemiesScript.enemiesCurrAmount = waveOfEnemiesScript.enemiesStartAmount;
+        wheatScript.image.fillAmount = 0;
+        hireaFermerScript.imageFarmerTimer.fillAmount = 0;
+        hireaWarriorScript.imageWarriorTimer.fillAmount = 0;
+        contibutionScript.wheatContributionTimer.fillAmount = 0;
+        CoroutineRunnerScript.StartCoroutines();
         menuCanvas.gameObject.SetActive(false);
         gameCanvas.gameObject.SetActive(true);
+
+
     }
 }
